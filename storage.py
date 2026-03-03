@@ -36,10 +36,10 @@ def _ensure_data_dir() -> None:
 def _teacher_to_dict(t: Teacher) -> dict:
     """Convert Teacher to JSON-serializable dict."""
     return {
-        "teacher_id": t.teacher_id,
-        "name": t.name,
-        "subjects": t.subjects,
-        "max_periods_per_day": t.max_periods_per_day,
+        "teacher_id": getattr(t, 'teacher_id', getattr(t, 'name', 'Unknown')),
+        "name": getattr(t, 'name', getattr(t, 'teacher_id', 'Unknown')),
+        "subjects": getattr(t, 'subjects', []),
+        "max_periods_per_day": getattr(t, 'max_periods_per_day', 6),
         "max_periods_per_week": getattr(t, 'max_periods_per_week', 30),
         "target_free_periods_per_day": getattr(t, 'target_free_periods_per_day', 0),
     }
@@ -60,11 +60,11 @@ def _dict_to_teacher(d):
 def _class_to_dict(c: Class) -> dict:
     """Convert Class to JSON-serializable dict."""
     return {
-        "id": c.id,
-        "name": c.name,
+        "id": getattr(c, 'id', getattr(c, 'class_id', 'Unknown')),
+        "name": getattr(c, 'name', getattr(c, 'id', 'Unknown')),
         "subjects": [
             {"subject": cs.subject, "weekly_periods": cs.weekly_periods, "teacher_id": cs.teacher_id}
-            for cs in c.subjects
+            for cs in getattr(c, 'subjects', [])
         ],
     }
 
