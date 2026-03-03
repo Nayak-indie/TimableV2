@@ -26,6 +26,7 @@ from pdf_export import (
     flat_to_class_timetables,
 )
 from solver.engine import invert_to_teacher_timetable, solve_timetable
+from solver.constraint_manager import manage_constraints
 from solver.rotation import generate_rotations
 from storage import (
     append_history,
@@ -256,141 +257,43 @@ def _notification_ticker() -> None:
 
 
 def load_demo_into_session() -> None:
-    """Populate in‑memory teachers/classes with the README demo."""
+    """Populate in‑memory teachers/classes with demo data."""
     st.session_state.teachers = [
-        Teacher(
-            teacher_id="Eric Simon",
-            name="Eric Simon",
-            subjects=["Physics"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Aisha Khan",
-            name="Aisha Khan",
-            subjects=["Chemistry"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Rahul Mehta",
-            name="Rahul Mehta",
-            subjects=["Mathematics"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Neha Verma",
-            name="Neha Verma",
-            subjects=["Biology"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Daniel Brooks",
-            name="Daniel Brooks",
-            subjects=["English"],
-            max_periods_per_day=4,
-            max_periods_per_week=20,
-            target_free_periods_per_day=4,
-        ),
-        Teacher(
-            teacher_id="Priya Nair",
-            name="Priya Nair",
-            subjects=["Economics"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Arjun Patel",
-            name="Arjun Patel",
-            subjects=["Accountancy"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Kavita Rao",
-            name="Kavita Rao",
-            subjects=["Business Studies"],
-            max_periods_per_day=4,
-            max_periods_per_week=24,
-            target_free_periods_per_day=4,
-        ),
-        Teacher(
-            teacher_id="Sofia Mendes",
-            name="Sofia Mendes",
-            subjects=["History"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Aman Gupta",
-            name="Aman Gupta",
-            subjects=["Political Science"],
-            max_periods_per_day=5,
-            max_periods_per_week=30,
-            target_free_periods_per_day=3,
-        ),
-        Teacher(
-            teacher_id="Ritu Chawla",
-            name="Ritu Chawla",
-            subjects=["Geography"],
-            max_periods_per_day=4,
-            max_periods_per_week=24,
-            target_free_periods_per_day=4,
-        ),
-        Teacher(
-            teacher_id="Marcus Lee",
-            name="Marcus Lee",
-            subjects=["Physical Education"],
-            max_periods_per_day=3,
-            max_periods_per_week=15,
-            target_free_periods_per_day=5,
-        ),
+        Teacher(teacher_id="Eric Simon", name="Eric Simon", subjects=["Physics"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Aisha Khan", name="Aisha Khan", subjects=["Chemistry"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Rahul Mehta", name="Rahul Mehta", subjects=["Mathematics"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Neha Verma", name="Neha Verma", subjects=["Biology"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Daniel Brooks", name="Daniel Brooks", subjects=["English"], max_periods_per_day=4, max_periods_per_week=20, target_free_periods_per_day=4),
+        Teacher(teacher_id="Priya Nair", name="Priya Nair", subjects=["Economics"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Arjun Patel", name="Arjun Patel", subjects=["Accountancy"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Kavita Rao", name="Kavita Rao", subjects=["Business Studies"], max_periods_per_day=4, max_periods_per_week=24, target_free_periods_per_day=4),
+        Teacher(teacher_id="Sofia Mendes", name="Sofia Mendes", subjects=["History"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Aman Gupta", name="Aman Gupta", subjects=["Political Science"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Ritu Chawla", name="Ritu Chawla", subjects=["Geography"], max_periods_per_day=4, max_periods_per_week=24, target_free_periods_per_day=4),
+        Teacher(teacher_id="Marcus Lee", name="Marcus Lee", subjects=["Physical Education"], max_periods_per_day=3, max_periods_per_week=15, target_free_periods_per_day=5),
+        Teacher(teacher_id="Rashmi Joshi", name="Rashmi Joshi", subjects=["Hindi"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Vikram Singh", name="Vikram Singh", subjects=["Computer Science"], max_periods_per_day=5, max_periods_per_week=30, target_free_periods_per_day=3),
+        Teacher(teacher_id="Anjali Roy", name="Anjali Roy", subjects=["Art"], max_periods_per_day=3, max_periods_per_week=15, target_free_periods_per_day=5),
     ]
 
     def cls(cid: str, subjects: List[Tuple[str, int, str]]) -> Class:
-        return Class(
-            id=cid,
-            name=cid,
-            subjects=[ClassSubject(s, w, t) for (s, w, t) in subjects],
-        )
+        return Class(id=cid, name=cid, subjects=[ClassSubject(s, w, t) for (s, w, t) in subjects])
 
     st.session_state.classes = [
-        cls(
-            "11SCI",
-            [
-                ("Physics", 6, "Eric Simon"),
-                ("Chemistry", 6, "Aisha Khan"),
-                ("Mathematics", 6, "Rahul Mehta"),
-                ("Biology", 6, "Neha Verma"),
-                ("English", 4, "Daniel Brooks"),
-                ("Physical Education", 2, "Marcus Lee"),
-            ],
-        ),
-        cls(
-            "12SCI",
-            [
-                ("Physics", 6, "Eric Simon"),
-                ("Chemistry", 6, "Aisha Khan"),
-                ("Mathematics", 6, "Rahul Mehta"),
-                ("Biology", 6, "Neha Verma"),
-                ("English", 4, "Daniel Brooks"),
-                ("Physical Education", 2, "Marcus Lee"),
-            ],
-        ),
+        cls("11NM", [("Physics",6,"Eric Simon"),("Chemistry",6,"Aisha Khan"),("Mathematics",6,"Rahul Mehta"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("11M", [("Biology",6,"Neha Verma"),("Chemistry",6,"Aisha Khan"),("Physics",6,"Eric Simon"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("11COM", [("Accountancy",6,"Arjun Patel"),("Economics",6,"Priya Nair"),("Business Studies",6,"Kavita Rao"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("11HUM", [("History",6,"Sofia Mendes"),("Political Science",6,"Aman Gupta"),("Geography",6,"Ritu Chawla"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("12SCI", [("Physics",6,"Eric Simon"),("Chemistry",6,"Aisha Khan"),("Mathematics",6,"Rahul Mehta"),("Biology",6,"Neha Verma"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("12COM", [("Accountancy",6,"Arjun Patel"),("Economics",6,"Priya Nair"),("Business Studies",6,"Kavita Rao"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("12HUM", [("History",6,"Sofia Mendes"),("Political Science",6,"Aman Gupta"),("Geography",6,"Ritu Chawla"),("English",4,"Daniel Brooks"),("Hindi",3,"Rashmi Joshi"),("Physical Education",2,"Marcus Lee")]),
+        cls("11CS", [("Computer Science",6,"Vikram Singh"),("English",4,"Daniel Brooks"),("Physical Education",2,"Marcus Lee"),("Hindi",3,"Rashmi Joshi"),("Art",2,"Anjali Roy")]),
+        cls("12CS", [("Computer Science",6,"Vikram Singh"),("English",4,"Daniel Brooks"),("Physical Education",2,"Marcus Lee"),("Hindi",3,"Rashmi Joshi"),("Art",2,"Anjali Roy")]),
     ]
 
     show_toast("Demo data loaded (teachers + classes)")
     set_demo_loaded()
-    # Save demo data to persistent storage
+    from storage import save_teachers, save_classes
     save_teachers(st.session_state.teachers)
     save_classes(st.session_state.classes)
 
@@ -560,6 +463,7 @@ def tab_teachers_classes() -> None:
                 )
                 show_toast(f"Class {cid} added")
                 append_history("add", f"Class {cid}", f"Added class {cid}")
+                from storage import save_classes
                 save_classes(st.session_state.classes)
 
     if st.session_state.classes:
@@ -585,6 +489,401 @@ def tab_teachers_classes() -> None:
                     st.rerun()
     else:
         st.info("No classes yet. Add a few above.")
+
+    # --- Teacher Preferences ---
+    st.markdown("---")
+    st.subheader("3. Teacher Availability")
+    
+    from teacher_preferences import load_preferences, save_preferences, TeacherPreference
+    
+    prefs = load_preferences()
+    cfg: SchoolConfig = st.session_state.config
+    
+    if st.session_state.teachers:
+        # Select teacher to configure
+        teacher_options = [t.teacher_id for t in st.session_state.teachers]
+        selected_teacher = st.selectbox("Select Teacher", options=teacher_options, key="pref_teacher_select")
+        
+        if selected_teacher:
+            current_pref = prefs.get(selected_teacher, TeacherPreference(teacher_id=selected_teacher))
+            
+            st.markdown(f"**Configure: {selected_teacher}**")
+            
+            # Day-by-day preference
+            for day_idx, day_name in enumerate(cfg.days):
+                with st.expander(f"{day_name}", expanded=False):
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        # Preferred periods
+                        current_preferred = current_pref.preferred_periods.get(day_idx, [])
+                        preferred_periods = st.multiselect(
+                            f"Preferred periods on {day_name}",
+                            options=[f"P{i+1}" for i in range(cfg.periods_per_day)],
+                            default=[f"P{p+1}" for p in current_preferred if p < cfg.periods_per_day],
+                            key=f"pref_{selected_teacher}_{day_idx}"
+                        )
+                    
+                    with col2:
+                        # Unavailable periods
+                        current_unavailable = current_pref.unavailable_periods.get(day_idx, [])
+                        unavailable_periods = st.multiselect(
+                            f"Unavailable periods on {day_name}",
+                            options=[f"P{i+1}" for i in range(cfg.periods_per_day)],
+                            default=[f"P{p+1}" for p in current_unavailable if p < cfg.periods_per_day],
+                            key=f"unavail_{selected_teacher}_{day_idx}"
+                        )
+                    
+                    # Convert to indices and save
+                    pref_indices = [int(p.replace("P", "")) - 1 for p in preferred_periods]
+                    unavail_indices = [int(p.replace("P", "")) - 1 for p in unavailable_periods]
+                    
+                    current_pref.preferred_periods[day_idx] = pref_indices
+                    current_pref.unavailable_periods[day_idx] = unavail_indices
+            
+            # Max consecutive periods
+            current_pref.max_consecutive_periods = st.number_input(
+                "Max consecutive periods",
+                min_value=1,
+                max_value=8,
+                value=current_pref.max_consecutive_periods,
+                key=f"max_consec_{selected_teacher}"
+            )
+            
+            # Save button
+            if st.button(f"💾 Save Preferences", key=f"save_pref_{selected_teacher}"):
+                prefs[selected_teacher] = current_pref
+                save_preferences(prefs)
+                show_toast(f"Preferences saved for {selected_teacher}")
+                
+                # Show summary
+                total_preferred = sum(len(v) for v in current_pref.preferred_periods.values())
+                total_unavailable = sum(len(v) for v in current_pref.unavailable_periods.values())
+                st.success(f"✅ Saved: {total_preferred} preferred periods, {total_unavailable} unavailable periods")
+    else:
+        st.info("Add teachers first to set their availability.")
+
+    # --- Subject Prerequisites ---
+    st.markdown("---")
+    st.subheader("4. Subject Prerequisites")
+    
+    from subject_sequencing import (
+        load_prerequisites, save_prerequisites, 
+        add_prerequisite, remove_prerequisite,
+        validate_prerequisites
+    )
+    
+    st.markdown("""
+    **📖 How to set prerequisites:**
+    - A prerequisite means the dependent subject should be taught *after* the prerequisite
+    - Example: Physics → Mathematics means Physics cannot be scheduled before Mathematics
+    - This helps maintain proper subject sequence in the weekly timetable
+    """)
+    
+    if st.session_state.classes:
+        # Select class
+        class_options = [c.id for c in st.session_state.classes]
+        selected_class = st.selectbox(
+            "Select Class",
+            options=class_options,
+            key="prereq_class_select"
+        )
+        
+        if selected_class:
+            # Get subjects for this class
+            cls = next((c for c in st.session_state.classes if c.id == selected_class), None)
+            if cls:
+                class_subjects = [cs.subject for cs in cls.subjects]
+                st.markdown(f"**Subjects in {selected_class}:** {', '.join(class_subjects)}")
+                
+                # Load current prerequisites
+                prereqs = load_prerequisites()
+                class_prereqs = prereqs.get(selected_class, {})
+                
+                # Show current prerequisites
+                if class_prereqs:
+                    st.markdown("**Current Prerequisites:**")
+                    for subj, prereq_list in class_prereqs.items():
+                        if prereq_list:
+                            for prereq in prereq_list:
+                                cols = st.columns([3, 3, 1])
+                                with cols[0]:
+                                    st.markdown(f"`{prereq}` → `{subj}`")
+                                with cols[2]:
+                                    if st.button("🗑️", key=f"del_prereq_{selected_class}_{subj}_{prereq}"):
+                                        remove_prerequisite(selected_class, subj, prereq)
+                                        st.rerun()
+                
+                # Add new prerequisite
+                st.markdown("**➕ Add New Prerequisite:**")
+                col1, col2 = st.columns(2)
+                
+                with col1:
+                    dependent_subject = st.selectbox(
+                        "Dependent Subject (should come AFTER)",
+                        options=class_subjects,
+                        key="dependent_subject"
+                    )
+                
+                with col2:
+                    # Get subjects that can be prerequisites (exclude dependent subject)
+                    prereq_options = [s for s in class_subjects if s != dependent_subject]
+                    prerequisite = st.selectbox(
+                        "Prerequisite Subject (should come FIRST)",
+                        options=prereq_options,
+                        key="prerequisite_subject"
+                    )
+                
+                if st.button("➕ Add Prerequisite", key="add_prereq_btn"):
+                    add_prerequisite(selected_class, dependent_subject, prerequisite)
+                    show_toast(f"Added: {prerequisite} → {dependent_subject}")
+                    st.rerun()
+                
+                # Validate prerequisites
+                is_valid, errors = validate_prerequisites(selected_class, class_subjects)
+                if not is_valid:
+                    st.error("Prerequisite Errors:")
+                    for err in errors:
+                        st.markdown(f"⚠️ {err}")
+                
+                # Help text
+                with st.expander("❓ How Prerequisites Work"):
+                    st.markdown("""
+                    **Example:**
+                    - If you set: `Mathematics → Physics` 
+                    - Then Physics cannot be scheduled before Mathematics in the same week
+                    
+                    **Tips:**
+                    - Start with foundational subjects as prerequisites
+                    - Sciences typically need Mathematics prerequisite
+                    - Keep chains short (2-3 subjects max) for best results
+                    """)
+    else:
+        st.info("Add classes first to set subject prerequisites.")
+
+    # --- Shared Teacher Analysis ---
+    st.markdown("---")
+    st.subheader("5. Shared Teacher Analysis")
+    
+    from shared_teacher_analysis import (
+        analyze_shared_teachers, get_shared_teachers, 
+        get_overloaded_teachers, generate_sharing_recommendations
+    )
+    
+    if st.session_state.teachers and st.session_state.classes:
+        cfg: SchoolConfig = st.session_state.config
+        
+        # Analyze all teachers
+        all_teachers = analyze_shared_teachers(
+            st.session_state.teachers, 
+            st.session_state.classes,
+            cfg
+        )
+        
+        # Get stats
+        shared = get_shared_teachers(st.session_state.teachers, st.session_state.classes, cfg)
+        overloaded = get_overloaded_teachers(st.session_state.teachers, st.session_state.classes, cfg)
+        
+        # Show metrics
+        cols = st.columns(4)
+        with cols[0]:
+            st.metric("Total Teachers", len(all_teachers))
+        with cols[1]:
+            st.metric("Shared Teachers", len(shared))
+        with cols[2]:
+            st.metric("Overloaded", len(overloaded))
+        with cols[3]:
+            st.metric("Healthy", len(all_teachers) - len(overloaded))
+        
+        # Show recommendations
+        if overloaded:
+            st.markdown("### ⚠️ Overloaded Teachers")
+            for rec in generate_sharing_recommendations(st.session_state.teachers, st.session_state.classes, cfg):
+                st.markdown(rec)
+        
+        # Show detailed table
+        st.markdown("### 📊 Teacher Workload Details")
+        
+        # Create dataframe
+        import pandas as pd
+        rows = []
+        for tid, info in all_teachers.items():
+            rows.append({
+                "Teacher": tid,
+                "Subjects": ", ".join(info.subjects),
+                "Classes": ", ".join(info.classes_assigned),
+                "Periods/Week": info.total_periods_per_week,
+                "Max Possible": info.max_possible_periods,
+                "Utilization": f"{info.utilization_percentage}%",
+                "Status": "⚠️ Overloaded" if info.is_overloaded else "✅ OK"
+            })
+        
+        if rows:
+            df = pd.DataFrame(rows)
+            st.dataframe(df, width='stretch', hide_index=True)
+        
+        # Help
+        with st.expander("❓ About Shared Teachers"):
+            st.markdown("""
+            **Shared Teachers** are those teaching multiple classes.
+            
+            **Why it matters:**
+            - Teachers with high utilization may need backup
+            - Overloaded teachers cannot complete all assignments
+            - Consider splitting subjects between teachers
+            
+            **Solutions:**
+            1. Add another teacher for the subject
+            2. Temporarily increase max periods/day
+            3. Reduce weekly periods for some classes
+            """)
+    else:
+        st.info("Add teachers and classes first to see analysis.")
+
+    # --- Load Balancing ---
+    st.markdown("---")
+    st.subheader("6. Load Balancing")
+    
+    from load_balancer import (
+        analyze_subject_distribution, get_load_balance_stats,
+        calculate_ideal_distribution, get_teacher_daily_load
+    )
+    
+    if st.session_state.classes and st.session_state.class_timetable:
+        cfg: SchoolConfig = st.session_state.config
+        
+        # Get load balance stats
+        stats = get_load_balance_stats(
+            st.session_state.classes,
+            cfg,
+            st.session_state.class_timetable
+        )
+        
+        # Show metrics
+        cols = st.columns(4)
+        with cols[0]:
+            st.metric("Total Subjects", stats.total_classes * 5)  # Approx
+        with cols[1]:
+            st.metric("✅ Balanced", stats.balanced_subjects)
+        with cols[2]:
+            st.metric("⚠️ Unbalanced", stats.unbalanced_subjects)
+        with cols[3]:
+            st.metric("Max Variance", f"{stats.max_daily_variance}")
+        
+        # Show recommendations
+        if stats.recommendations:
+            st.markdown("### 💡 Recommendations")
+            for rec in stats.recommendations[:5]:
+                st.markdown(rec)
+        
+        # Show teacher daily load
+        st.markdown("### 📊 Teacher Daily Load")
+        teacher_load = get_teacher_daily_load(st.session_state.class_timetable, cfg)
+        
+        import pandas as pd
+        rows = []
+        for tid, daily in sorted(teacher_load.items()):
+            rows.append({
+                "Teacher": tid,
+                "Mon": daily[0] if len(daily) > 0 else 0,
+                "Tue": daily[1] if len(daily) > 1 else 0,
+                "Wed": daily[2] if len(daily) > 2 else 0,
+                "Thu": daily[3] if len(daily) > 3 else 0,
+                "Fri": daily[4] if len(daily) > 4 else 0,
+                "Total": sum(daily)
+            })
+        
+        if rows:
+            df = pd.DataFrame(rows)
+            st.dataframe(df, width='stretch', hide_index=True)
+        
+        with st.expander("❓ About Load Balancing"):
+            st.markdown("""
+            **Load Balancing** ensures:
+            - Subject periods are evenly spread across days
+            - Teachers have consistent daily workload
+            - No day is overloaded with too many periods
+            
+            **Variance**: Difference between most and least busy teaching day
+            - Variance of 0-1 = ✅ Well balanced
+            - Variance of 2 = ⚠️ Noticeable imbalance
+            - Variance of 3+ = 🔴 Needs attention
+            """)
+    elif st.session_state.classes:
+        st.info("Generate a timetable first to see load balancing analysis.")
+    else:
+        st.info("Add classes first to see load balancing.")
+
+    # --- Elective / Optional Classes ---
+    st.markdown("---")
+    st.subheader("7. Elective / Optional Classes")
+    
+    from elective_manager import (
+        load_elective_groups, save_elective_groups,
+        load_student_electives, save_student_electives,
+        add_elective_group, format_electives_for_display
+    )
+    
+    st.markdown("""
+    **📖 How Electives Work:**
+    - Electives are optional subjects that students can choose
+    - Groups allow students to pick from a set of subjects
+    - Solver assigns electives after core subjects to avoid conflicts
+    """)
+    
+    # Load current groups
+    groups = load_elective_groups()
+    
+    # Show current elective groups
+    if groups:
+        st.markdown("### Current Elective Groups")
+        for name, group in groups.items():
+            cols = st.columns([3, 2, 1])
+            with cols[0]:
+                st.markdown(f"**{name}**")
+            with cols[1]:
+                st.caption(f"{', '.join(group.subjects)}")
+            with cols[2]:
+                if st.button("🗑️", key=f"del_group_{name}"):
+                    from elective_manager import remove_elective_group
+                    remove_elective_group(name)
+                    st.rerun()
+    
+    # Add new elective group
+    st.markdown("### ➕ Add Elective Group")
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        group_name = st.text_input("Group Name", placeholder="e.g., Science Electives")
+        subjects = st.text_area("Subjects (comma-separated)", placeholder="e.g., Biotechnology, Computer Science, Psychology")
+    
+    with col2:
+        min_select = st.number_input("Min to Select", min_value=1, max_value=5, value=1)
+        max_select = st.number_input("Max to Select", min_value=1, max_value=5, value=1)
+    
+    if st.button("➕ Add Group"):
+        if group_name and subjects:
+            subject_list = [s.strip() for s in subjects.split(",") if s.strip()]
+            add_elective_group(group_name, subject_list, min_select, max_select)
+            show_toast(f"Added elective group: {group_name}")
+            st.rerun()
+    
+    # Help
+    with st.expander("❓ How Electives Work"):
+        st.markdown("""
+        **Example Elective Setup:**
+        - Group: "Science Electives"
+          - Subjects: Biotechnology, Computer Science, Psychology
+          - Students pick 1-2
+        
+        **Workflow:**
+        1. Add elective groups here
+        2. In class subjects, mark subjects as "optional"
+        3. Solver will assign elective subjects after core
+        
+        **Note:** Full elective scheduling requires additional integration.
+        This section lets you define elective groups for future use.
+        """)
 
 
 def tab_history() -> None:
@@ -616,10 +915,22 @@ def tab_class_timetables() -> None:
         if not st.session_state.classes:
             st.error("Add at least one class first.")
             return
-        with st.spinner("Solving with OR‑Tools..."):
-            tt = solve_timetable(
-                cfg, st.session_state.teachers, st.session_state.classes
+        
+        with st.spinner("Managing constraints and solving..."):
+            # First, resolve any constraint violations
+            teachers, classes, constraint_msg = manage_constraints(
+                st.session_state.teachers, 
+                st.session_state.classes, 
+                cfg
             )
+            
+            # Show constraint messages
+            if constraint_msg and "successfully" not in constraint_msg.lower():
+                st.warning(constraint_msg)
+            
+            # Generate timetable with adjusted data
+            tt = solve_timetable(cfg, teachers, classes)
+        
         if tt is None:
             st.error("No solution found. Try changing config or weekly periods.")
             append_history("generate", "Timetable", "No solution found")
@@ -708,6 +1019,188 @@ def tab_teacher_timetables() -> None:
         )
 
 
+def tab_connections() -> None:
+    st.header("🔗 Teacher-Class Connections")
+    
+    if not st.session_state.teachers or not st.session_state.classes:
+        st.info("Add teachers and classes first to see connections.")
+        return
+    
+    from teacher_class_connections import prepare_connections, get_legend, SUBJECT_COLORS, STREAM_PALETTE
+    
+    # Prepare connection data
+    conn_data = prepare_connections(st.session_state.teachers, st.session_state.classes)
+    
+    # Show stats
+    cols = st.columns(3)
+    with cols[0]:
+        st.metric("👨‍🏫 Teachers", conn_data["stats"]["total_teachers"])
+    with cols[1]:
+        st.metric("📚 Classes", conn_data["stats"]["total_classes"])
+    with cols[2]:
+        st.metric("🔗 Connections", conn_data["stats"]["total_connections"])
+    
+    # Legend
+    st.markdown("**Legend:**")
+    legend_cols = st.columns(4)
+    
+    # Subject colors (teachers)
+    for i, (group, color) in enumerate(SUBJECT_COLORS.items()):
+        with legend_cols[i % 4]:
+            st.markdown(f'<span style="color:{color}">●</span> {group}', unsafe_allow_html=True)
+    
+    # Create network graph using visd
+    import plotly.graph_objects as go
+    
+    # Prepare node positions (circular layout)
+    nodes = conn_data["nodes"]
+    edges = conn_data["edges"]
+    
+    teacher_nodes = [n for n in nodes if n["type"] == "teacher"]
+    class_nodes = [n for n in nodes if n["type"] == "class"]
+    
+    # Calculate positions
+    n_teachers = len(teacher_nodes)
+    n_classes = len(class_nodes)
+    
+    # Teacher positions (inner circle)
+    teacher_x = []
+    teacher_y = []
+    for i, n in enumerate(teacher_nodes):
+        angle = 2 * 3.14159 * i / max(n_teachers, 1)
+        teacher_x.append(0.5 * 10 * (1 + 0.5) * (1 if i % 2 == 0 else 0.8) * (1 if i % 3 == 0 else 0.9) * (1 if i % 4 == 0 else 0.85) * (1 if i % 5 == 0 else 0.95) * 0.6 if False else 3 * (0.5 + 0.5 * (i / max(n_teachers - 1, 1))))
+        teacher_x.append(3 * (0.5 + 0.5 * (i / max(n_teachers - 1, 1))) * (1 if i % 2 == 0 else -1) if n_teachers > 1 else 0)
+        teacher_y.append(3 * (0.5 + 0.5 * (i / max(n_teachers - 1, 1))) * (1 if i % 3 == 0 else -1) if n_teachers > 1 else 0)
+    
+    # Simpler: use force-directed-like positions
+    teacher_x = []
+    teacher_y = []
+    for i, n in enumerate(teacher_nodes):
+        angle = 2 * 3.14159 * i / max(n_teachers, 1)
+        teacher_x.append(4 * (0.5 + 0.5 * (i / max(n_teachers - 1, 1))) * (1 if i % 2 == 0 else -1) if n_teachers > 1 else 0)
+        teacher_y.append(4 * (0.5 + 0.5 * (i / max(n_teachers - 1, 1))) * (1 if i % 3 == 0 else -1) if n_teachers > 1 else 0)
+    
+    class_x = []
+    class_y = []
+    for i, n in enumerate(class_nodes):
+        angle = 2 * 3.14159 * i / max(n_classes, 1)
+        class_x.append(8 + 3 * (0.5 + 0.5 * (i / max(n_classes - 1, 1))) * (1 if i % 2 == 0 else -1) if n_classes > 1 else 8)
+        class_y.append(4 * (0.5 + 0.5 * (i / max(n_classes - 1, 1))) * (1 if i % 3 == 0 else -1) if n_classes > 1 else 0)
+    
+    # Create node trace
+    node_x = teacher_x + class_x
+    node_y = teacher_y + class_y
+    node_colors = [n["color"] for n in teacher_nodes + class_nodes]
+    node_labels = [n["label"] for n in teacher_nodes + class_nodes]
+    node_types = [n["type"] for n in teacher_nodes + class_nodes]
+    node_titles = [n["title"] for n in teacher_nodes + class_nodes]
+    
+    # Node sizes
+    node_sizes = [25 if t == "teacher" else 35 for t in node_types]
+    
+    # Create edges
+    edge_x = []
+    edge_y = []
+    edge_colors = []
+    edge_widths = []
+    
+    for edge in edges:
+        # Find source and target positions
+        src_id = edge["from"]
+        tgt_id = edge["to"]
+        
+        src_idx = next((i for i, n in enumerate(nodes) if n["id"] == src_id), None)
+        tgt_idx = next((i for i, n in enumerate(nodes) if n["id"] == tgt_id), None)
+        
+        if src_idx is not None and tgt_idx is not None:
+            edge_x.extend([node_x[src_idx], node_x[tgt_idx], None])
+            edge_y.extend([node_y[src_idx], node_y[tgt_idx], None])
+            edge_colors.append("#888")
+            edge_widths.append(edge["width"])
+    
+    # Create figure
+    fig = go.Figure()
+    
+    # Add edges
+    for i, edge in enumerate(edges):
+        src_id = edge["from"]
+        tgt_id = edge["to"]
+        
+        src_idx = next((j for j, n in enumerate(nodes) if n["id"] == src_id), None)
+        tgt_idx = next((j for j, n in enumerate(nodes) if n["id"] == tgt_id), None)
+        
+        if src_idx is not None and tgt_idx is not None:
+            fig.add_trace(go.Scatter(
+                x=[node_x[src_idx], node_x[tgt_idx]],
+                y=[node_y[src_idx], node_y[tgt_idx]],
+                mode='lines',
+                line=dict(width=edge["width"], color='#666666'),
+                hoverinfo='text',
+                text=edge["title"],
+                showlegend=False
+            ))
+    
+    # Add nodes
+    fig.add_trace(go.Scatter(
+        x=node_x,
+        y=node_y,
+        mode='markers+text',
+        marker=dict(
+            size=node_sizes,
+            color=node_colors,
+            line=dict(width=2, color='#333333')
+        ),
+        text=node_labels,
+        textposition="top center",
+        textfont=dict(size=10, color='#f0f0f0'),
+        hoverinfo='text',
+        hovertext=node_titles,
+        showlegend=False
+    ))
+    
+    # Update layout
+    fig.update_layout(
+        template="plotly_dark",
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
+        xaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-2, 15]),
+        yaxis=dict(showgrid=False, zeroline=False, showticklabels=False, range=[-6, 6]),
+        hovermode='closest',
+        margin=dict(l=0, r=0, t=30, b=0),
+        height=600,
+        title=dict(
+            text="<b>Teacher-Class Connection Network</b>",
+            font=dict(size=20, color='#f0f0f0'),
+            x=0.5
+        ),
+        annotations=[
+            dict(x=3, y=5.5, text="<b>Teachers</b>", showarrow=False, font=dict(size=14, color='#aaa')),
+            dict(x=10, y=5.5, text="<b>Classes</b>", showarrow=False, font=dict(size=14, color='#aaa'))
+        ]
+    )
+    
+    st.plotly_chart(fig, width='stretch')
+    
+    # Connection details
+    st.markdown("### 📊 Connection Details")
+    
+    # Create a dataframe for display
+    import pandas as pd
+    conn_df = pd.DataFrame([
+        {
+            "Teacher": edge["from"].replace("teacher_", ""),
+            "Class": edge["to"].replace("class_", ""),
+            "Subject": edge["subject"],
+            "Periods/Week": edge["periods"]
+        }
+        for edge in edges
+    ])
+    
+    if not conn_df.empty:
+        conn_df = conn_df.sort_values(["Teacher", "Class"])
+        st.dataframe(conn_df, width='stretch', hide_index=True)
+
+
 def tab_heatmaps() -> None:
     st.header("🔥 Heatmaps")
     if not st.session_state.class_timetable:
@@ -773,7 +1266,7 @@ def tab_heatmaps() -> None:
         margin=dict(l=40, r=20, t=40, b=40),
         yaxis=dict(categoryorder="array", categoryarray=teachers),
     )
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width='stretch')
     st.caption("Bigger, brighter dots = more periods for that teacher on that day.")
 
 
@@ -865,32 +1358,36 @@ def main() -> None:
     st.markdown("*Smooth, stable, alive.*")
 
     _notification_ticker()
-
-    tab1, tab2, tab3, tab4, tab5, tab6 = st.tabs(
+    tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
         [
             "👥 Teachers & Classes",
-            "🕓 History",
             "📋 Class Timetables",
-            "👨‍🏫 Teacher Timetables",
+            "👨🏫 Teacher Timetables",
+            "🔗 Connections",
             "🔥 Heatmaps",
             "📄 PDF Export",
+            "🕓 History",
+            "🎯 Electives",
         ]
     )
 
     with tab1:
         tab_teachers_classes()
     with tab2:
-        tab_history()
-    with tab3:
         tab_class_timetables()
-    with tab4:
+    with tab3:
         tab_teacher_timetables()
+    with tab4:
+        tab_connections()
     with tab5:
         tab_heatmaps()
     with tab6:
         tab_pdf_export()
-
-
+    with tab7:
+        tab_history()
+    with tab8:
+        st.header("🎯 Electives")
+        st.info("Elective management is in the Teachers & Classes tab.")
 if __name__ == "__main__":
     main()
 

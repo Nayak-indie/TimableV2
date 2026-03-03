@@ -1,32 +1,32 @@
 [
   {
-    "id": "11SCI",
-    "name": "11SCI",
+    "id": "11NM",
+    "name": "11NM",
     "subjects": [
       {
         "subject": "Physics",
-        "weekly_periods": 6,
+        "weekly_periods": 4,
         "teacher_id": "Eric Simon"
       },
       {
         "subject": "Chemistry",
-        "weekly_periods": 6,
+        "weekly_periods": 4,
         "teacher_id": "Aisha Khan"
       },
       {
         "subject": "Mathematics",
-        "weekly_periods": 6,
+        "weekly_periods": 4,
         "teacher_id": "Rahul Mehta"
       },
       {
-        "subject": "Biology",
-        "weekly_periods": 6,
-        "teacher_id": "Neha Verma"
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Daniel Brooks"
       },
       {
-        "subject": "English",
-        "weekly_periods": 4,
-        "teacher_id": "Daniel Brooks"
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Rashmi Joshi"
       },
       {
         "subject": "Physical Education",
@@ -36,38 +36,285 @@
     ]
   },
   {
-    "id": "12SCI",
-    "name": "12SCI",
+    "id": "11M",
+    "name": "11M",
     "subjects": [
       {
-        "subject": "Physics",
-        "weekly_periods": 6,
-        "teacher_id": "Eric Simon"
-      },
-      {
-        "subject": "Chemistry",
-        "weekly_periods": 6,
-        "teacher_id": "Aisha Khan"
-      },
-      {
-        "subject": "Mathematics",
-        "weekly_periods": 6,
-        "teacher_id": "Rahul Mehta"
-      },
-      {
         "subject": "Biology",
-        "weekly_periods": 6,
+        "weekly_periods": 4,
         "teacher_id": "Neha Verma"
       },
       {
-        "subject": "English",
+        "subject": "Chemistry",
         "weekly_periods": 4,
+        "teacher_id": "Aisha Khan"
+      },
+      {
+        "subject": "Physics",
+        "weekly_periods": 4,
+        "teacher_id": "Eric Simon"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Sarah John"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Deepa Patel"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Mike Johnson"
+      }
+    ]
+  },
+  {
+    "id": "11COM",
+    "name": "11COM",
+    "subjects": [
+      {
+        "subject": "Accountancy",
+        "weekly_periods": 4,
+        "teacher_id": "Arjun Patel"
+      },
+      {
+        "subject": "Economics",
+        "weekly_periods": 4,
+        "teacher_id": "Priya Nair"
+      },
+      {
+        "subject": "Business Studies",
+        "weekly_periods": 4,
+        "teacher_id": "Kavita Rao"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
         "teacher_id": "Daniel Brooks"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Rashmi Joshi"
       },
       {
         "subject": "Physical Education",
         "weekly_periods": 2,
         "teacher_id": "Marcus Lee"
+      }
+    ]
+  },
+  {
+    "id": "11HUM",
+    "name": "11HUM",
+    "subjects": [
+      {
+        "subject": "History",
+        "weekly_periods": 4,
+        "teacher_id": "Sofia Mendes"
+      },
+      {
+        "subject": "Political Science",
+        "weekly_periods": 4,
+        "teacher_id": "Aman Gupta"
+      },
+      {
+        "subject": "Geography",
+        "weekly_periods": 4,
+        "teacher_id": "Ritu Chawla"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Sarah John"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Deepa Patel"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Mike Johnson"
+      }
+    ]
+  },
+  {
+    "id": "12SCI",
+    "name": "12SCI",
+    "subjects": [
+      {
+        "subject": "Physics",
+        "weekly_periods": 4,
+        "teacher_id": "Eric Simon"
+      },
+      {
+        "subject": "Chemistry",
+        "weekly_periods": 4,
+        "teacher_id": "Aisha Khan"
+      },
+      {
+        "subject": "Mathematics",
+        "weekly_periods": 4,
+        "teacher_id": "Rahul Mehta"
+      },
+      {
+        "subject": "Biology",
+        "weekly_periods": 4,
+        "teacher_id": "Neha Verma"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Daniel Brooks"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Rashmi Joshi"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Marcus Lee"
+      }
+    ]
+  },
+  {
+    "id": "12COM",
+    "name": "12COM",
+    "subjects": [
+      {
+        "subject": "Accountancy",
+        "weekly_periods": 4,
+        "teacher_id": "Arjun Patel"
+      },
+      {
+        "subject": "Economics",
+        "weekly_periods": 4,
+        "teacher_id": "Priya Nair"
+      },
+      {
+        "subject": "Business Studies",
+        "weekly_periods": 4,
+        "teacher_id": "Kavita Rao"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Sarah John"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Deepa Patel"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Mike Johnson"
+      }
+    ]
+  },
+  {
+    "id": "12HUM",
+    "name": "12HUM",
+    "subjects": [
+      {
+        "subject": "History",
+        "weekly_periods": 4,
+        "teacher_id": "Sofia Mendes"
+      },
+      {
+        "subject": "Political Science",
+        "weekly_periods": 4,
+        "teacher_id": "Aman Gupta"
+      },
+      {
+        "subject": "Geography",
+        "weekly_periods": 4,
+        "teacher_id": "Ritu Chawla"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Daniel Brooks"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Rashmi Joshi"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Marcus Lee"
+      }
+    ]
+  },
+  {
+    "id": "11CS",
+    "name": "11CS",
+    "subjects": [
+      {
+        "subject": "Computer Science",
+        "weekly_periods": 4,
+        "teacher_id": "Vikram Singh"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Sarah John"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Mike Johnson"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Deepa Patel"
+      },
+      {
+        "subject": "Art",
+        "weekly_periods": 2,
+        "teacher_id": "Anjali Roy"
+      }
+    ]
+  },
+  {
+    "id": "12CS",
+    "name": "12CS",
+    "subjects": [
+      {
+        "subject": "Computer Science",
+        "weekly_periods": 4,
+        "teacher_id": "Vikram Singh"
+      },
+      {
+        "subject": "English",
+        "weekly_periods": 3,
+        "teacher_id": "Sarah John"
+      },
+      {
+        "subject": "Physical Education",
+        "weekly_periods": 2,
+        "teacher_id": "Mike Johnson"
+      },
+      {
+        "subject": "Hindi",
+        "weekly_periods": 2,
+        "teacher_id": "Deepa Patel"
+      },
+      {
+        "subject": "Art",
+        "weekly_periods": 2,
+        "teacher_id": "Anjali Roy"
       }
     ]
   }

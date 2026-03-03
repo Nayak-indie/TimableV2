@@ -1,133 +1,309 @@
 {
-  "11SCI|0|3": [
+  "11NM|0|2": [
     "Physics",
     "Eric Simon"
   ],
-  "11SCI|1|0": [
+  "11NM|2|5": [
     "Physics",
     "Eric Simon"
   ],
-  "11SCI|1|6": [
+  "11NM|3|6": [
     "Physics",
     "Eric Simon"
   ],
-  "11SCI|1|7": [
+  "11NM|3|7": [
     "Physics",
     "Eric Simon"
   ],
-  "11SCI|2|7": [
-    "Physics",
-    "Eric Simon"
-  ],
-  "11SCI|4|0": [
-    "Physics",
-    "Eric Simon"
-  ],
-  "11SCI|0|0": [
+  "11NM|1|2": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "11SCI|0|6": [
+  "11NM|3|1": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "11SCI|0|7": [
+  "11NM|3|2": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "11SCI|2|2": [
+  "11NM|4|7": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "11SCI|2|5": [
-    "Chemistry",
-    "Aisha Khan"
-  ],
-  "11SCI|3|2": [
-    "Chemistry",
-    "Aisha Khan"
-  ],
-  "11SCI|0|5": [
+  "11NM|0|1": [
     "Mathematics",
     "Rahul Mehta"
   ],
-  "11SCI|1|5": [
+  "11NM|1|1": [
     "Mathematics",
     "Rahul Mehta"
   ],
-  "11SCI|3|0": [
+  "11NM|2|3": [
     "Mathematics",
     "Rahul Mehta"
   ],
-  "11SCI|3|3": [
+  "11NM|2|7": [
     "Mathematics",
     "Rahul Mehta"
   ],
-  "11SCI|3|7": [
-    "Mathematics",
-    "Rahul Mehta"
-  ],
-  "11SCI|4|7": [
-    "Mathematics",
-    "Rahul Mehta"
-  ],
-  "11SCI|1|3": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|2|3": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|2|6": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|3|5": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|4|5": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|4|6": [
-    "Biology",
-    "Neha Verma"
-  ],
-  "11SCI|0|2": [
+  "11NM|2|1": [
     "English",
     "Daniel Brooks"
   ],
-  "11SCI|1|2": [
+  "11NM|4|3": [
     "English",
     "Daniel Brooks"
   ],
-  "11SCI|4|2": [
+  "11NM|4|5": [
     "English",
     "Daniel Brooks"
   ],
-  "11SCI|4|3": [
-    "English",
-    "Daniel Brooks"
+  "11NM|0|6": [
+    "Hindi",
+    "Rashmi Joshi"
   ],
-  "11SCI|2|0": [
+  "11NM|1|5": [
+    "Hindi",
+    "Rashmi Joshi"
+  ],
+  "11NM|0|3": [
     "Physical Education",
     "Marcus Lee"
   ],
-  "11SCI|3|6": [
+  "11NM|1|3": [
     "Physical Education",
     "Marcus Lee"
   ],
-  "12SCI|0|2": [
+  "11M|1|0": [
+    "Biology",
+    "Neha Verma"
+  ],
+  "11M|1|7": [
+    "Biology",
+    "Neha Verma"
+  ],
+  "11M|3|3": [
+    "Biology",
+    "Neha Verma"
+  ],
+  "11M|4|2": [
+    "Biology",
+    "Neha Verma"
+  ],
+  "11M|0|7": [
+    "Chemistry",
+    "Aisha Khan"
+  ],
+  "11M|1|6": [
+    "Chemistry",
+    "Aisha Khan"
+  ],
+  "11M|2|7": [
+    "Chemistry",
+    "Aisha Khan"
+  ],
+  "11M|4|6": [
+    "Chemistry",
+    "Aisha Khan"
+  ],
+  "11M|0|0": [
     "Physics",
     "Eric Simon"
   ],
-  "12SCI|0|5": [
+  "11M|0|5": [
     "Physics",
     "Eric Simon"
   ],
-  "12SCI|0|7": [
+  "11M|4|1": [
+    "Physics",
+    "Eric Simon"
+  ],
+  "11M|4|3": [
+    "Physics",
+    "Eric Simon"
+  ],
+  "11M|2|0": [
+    "English",
+    "Sarah John"
+  ],
+  "11M|3|5": [
+    "English",
+    "Sarah John"
+  ],
+  "11M|3|7": [
+    "English",
+    "Sarah John"
+  ],
+  "11M|0|6": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11M|2|1": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11M|0|3": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "11M|1|3": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "11COM|0|0": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "11COM|0|1": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "11COM|2|0": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "11COM|3|2": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "11COM|0|3": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "11COM|1|3": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "11COM|4|0": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "11COM|4|3": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "11COM|2|1": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "11COM|2|3": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "11COM|2|5": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "11COM|4|2": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "11COM|0|7": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "11COM|4|1": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "11COM|4|6": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "11COM|0|2": [
+    "Hindi",
+    "Rashmi Joshi"
+  ],
+  "11COM|3|5": [
+    "Hindi",
+    "Rashmi Joshi"
+  ],
+  "11COM|0|5": [
+    "Physical Education",
+    "Marcus Lee"
+  ],
+  "11COM|1|1": [
+    "Physical Education",
+    "Marcus Lee"
+  ],
+  "11HUM|2|3": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "11HUM|2|5": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "11HUM|4|0": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "11HUM|4|6": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "11HUM|0|2": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "11HUM|2|0": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "11HUM|2|2": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "11HUM|3|2": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "11HUM|0|7": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "11HUM|1|1": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "11HUM|2|1": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "11HUM|3|3": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "11HUM|0|3": [
+    "English",
+    "Sarah John"
+  ],
+  "11HUM|0|6": [
+    "English",
+    "Sarah John"
+  ],
+  "11HUM|4|7": [
+    "English",
+    "Sarah John"
+  ],
+  "11HUM|2|6": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11HUM|3|6": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11HUM|1|7": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "11HUM|4|3": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "12SCI|2|1": [
     "Physics",
     "Eric Simon"
   ],
@@ -135,35 +311,27 @@
     "Physics",
     "Eric Simon"
   ],
-  "12SCI|3|2": [
-    "Physics",
-    "Eric Simon"
-  ],
-  "12SCI|3|7": [
-    "Physics",
-    "Eric Simon"
-  ],
-  "12SCI|0|3": [
-    "Chemistry",
-    "Aisha Khan"
-  ],
-  "12SCI|1|2": [
-    "Chemistry",
-    "Aisha Khan"
-  ],
-  "12SCI|2|7": [
-    "Chemistry",
-    "Aisha Khan"
-  ],
   "12SCI|3|3": [
+    "Physics",
+    "Eric Simon"
+  ],
+  "12SCI|4|7": [
+    "Physics",
+    "Eric Simon"
+  ],
+  "12SCI|0|0": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "12SCI|3|5": [
+  "12SCI|0|6": [
     "Chemistry",
     "Aisha Khan"
   ],
-  "12SCI|4|0": [
+  "12SCI|1|7": [
+    "Chemistry",
+    "Aisha Khan"
+  ],
+  "12SCI|4|1": [
     "Chemistry",
     "Aisha Khan"
   ],
@@ -175,11 +343,7 @@
     "Mathematics",
     "Rahul Mehta"
   ],
-  "12SCI|1|7": [
-    "Mathematics",
-    "Rahul Mehta"
-  ],
-  "12SCI|2|2": [
+  "12SCI|3|2": [
     "Mathematics",
     "Rahul Mehta"
   ],
@@ -187,56 +351,304 @@
     "Mathematics",
     "Rahul Mehta"
   ],
-  "12SCI|4|6": [
-    "Mathematics",
-    "Rahul Mehta"
-  ],
-  "12SCI|0|0": [
+  "12SCI|0|3": [
     "Biology",
     "Neha Verma"
   ],
-  "12SCI|2|0": [
+  "12SCI|2|2": [
     "Biology",
     "Neha Verma"
   ],
-  "12SCI|2|5": [
+  "12SCI|3|1": [
     "Biology",
     "Neha Verma"
   ],
-  "12SCI|4|2": [
+  "12SCI|3|7": [
     "Biology",
     "Neha Verma"
   ],
-  "12SCI|4|3": [
-    "Biology",
-    "Neha Verma"
+  "12SCI|0|5": [
+    "English",
+    "Daniel Brooks"
   ],
-  "12SCI|4|7": [
-    "Biology",
-    "Neha Verma"
+  "12SCI|1|2": [
+    "English",
+    "Daniel Brooks"
   ],
   "12SCI|1|3": [
     "English",
     "Daniel Brooks"
   ],
-  "12SCI|1|5": [
-    "English",
-    "Daniel Brooks"
+  "12SCI|0|1": [
+    "Hindi",
+    "Rashmi Joshi"
   ],
-  "12SCI|2|6": [
-    "English",
-    "Daniel Brooks"
-  ],
-  "12SCI|4|5": [
-    "English",
-    "Daniel Brooks"
-  ],
-  "12SCI|0|6": [
-    "Physical Education",
-    "Marcus Lee"
+  "12SCI|2|0": [
+    "Hindi",
+    "Rashmi Joshi"
   ],
   "12SCI|3|0": [
     "Physical Education",
     "Marcus Lee"
+  ],
+  "12SCI|3|5": [
+    "Physical Education",
+    "Marcus Lee"
+  ],
+  "12COM|0|2": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "12COM|1|0": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "12COM|1|3": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "12COM|2|3": [
+    "Accountancy",
+    "Arjun Patel"
+  ],
+  "12COM|1|6": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "12COM|1|7": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "12COM|2|1": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "12COM|3|3": [
+    "Economics",
+    "Priya Nair"
+  ],
+  "12COM|0|1": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "12COM|3|0": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "12COM|3|1": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "12COM|3|6": [
+    "Business Studies",
+    "Kavita Rao"
+  ],
+  "12COM|1|5": [
+    "English",
+    "Sarah John"
+  ],
+  "12COM|4|0": [
+    "English",
+    "Sarah John"
+  ],
+  "12COM|4|6": [
+    "English",
+    "Sarah John"
+  ],
+  "12COM|3|5": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "12COM|4|7": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "12COM|2|2": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "12COM|2|7": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "12HUM|0|5": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "12HUM|1|3": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "12HUM|3|3": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "12HUM|3|7": [
+    "History",
+    "Sofia Mendes"
+  ],
+  "12HUM|0|7": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "12HUM|2|6": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "12HUM|3|0": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "12HUM|3|5": [
+    "Political Science",
+    "Aman Gupta"
+  ],
+  "12HUM|0|3": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "12HUM|2|2": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "12HUM|4|5": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "12HUM|4|6": [
+    "Geography",
+    "Ritu Chawla"
+  ],
+  "12HUM|2|3": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "12HUM|3|1": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "12HUM|4|0": [
+    "English",
+    "Daniel Brooks"
+  ],
+  "12HUM|1|1": [
+    "Hindi",
+    "Rashmi Joshi"
+  ],
+  "12HUM|2|5": [
+    "Hindi",
+    "Rashmi Joshi"
+  ],
+  "12HUM|1|0": [
+    "Physical Education",
+    "Marcus Lee"
+  ],
+  "12HUM|1|7": [
+    "Physical Education",
+    "Marcus Lee"
+  ],
+  "11CS|1|0": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "11CS|2|0": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "11CS|3|0": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "11CS|4|7": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "11CS|0|0": [
+    "English",
+    "Sarah John"
+  ],
+  "11CS|0|7": [
+    "English",
+    "Sarah John"
+  ],
+  "11CS|2|7": [
+    "English",
+    "Sarah John"
+  ],
+  "11CS|1|1": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "11CS|3|5": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "11CS|1|6": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11CS|4|0": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "11CS|0|5": [
+    "Art",
+    "Anjali Roy"
+  ],
+  "11CS|2|3": [
+    "Art",
+    "Anjali Roy"
+  ],
+  "12CS|0|0": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "12CS|1|3": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "12CS|2|6": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "12CS|2|7": [
+    "Computer Science",
+    "Vikram Singh"
+  ],
+  "12CS|1|1": [
+    "English",
+    "Sarah John"
+  ],
+  "12CS|2|2": [
+    "English",
+    "Sarah John"
+  ],
+  "12CS|3|3": [
+    "English",
+    "Sarah John"
+  ],
+  "12CS|1|2": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "12CS|4|7": [
+    "Physical Education",
+    "Mike Johnson"
+  ],
+  "12CS|0|3": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "12CS|4|6": [
+    "Hindi",
+    "Deepa Patel"
+  ],
+  "12CS|1|0": [
+    "Art",
+    "Anjali Roy"
+  ],
+  "12CS|1|6": [
+    "Art",
+    "Anjali Roy"
   ]
 }
