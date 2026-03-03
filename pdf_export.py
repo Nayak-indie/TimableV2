@@ -30,11 +30,12 @@ from io import BytesIO
 from typing import Dict, List, Tuple
 
 from reportlab.lib import colors
-from reportlab.lib.pagesizes import A4
+from reportlab.lib.pagesizes import landscape, A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
-from reportlab.lib.enums import TA_CENTER
+from reportlab.lib.enums import TA_CENTER, TA_LEFT
+from reportlab.platypus import Flowable
 
 from models import SchoolConfig
 
@@ -68,7 +69,8 @@ def export_class_timetables_pdf(
     class_timetables: class_id -> (day_idx, period_idx) -> (subject, teacher_id)
     """
     buffer = BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=A4, leftMargin=1.5*cm, rightMargin=1.5*cm)
+    # Use landscape A4 for better table fit
+    doc = SimpleDocTemplate(buffer, pagesize=landscape(A4), leftMargin=1*cm, rightMargin=1*cm, topMargin=1*cm, bottomMargin=1*cm)
     styles = getSampleStyleSheet()
     story = []
 
@@ -92,12 +94,12 @@ def export_class_timetables_pdf(
                     row.append(subj if subj else "Free period")
             rows.append(row)
 
-        t = Table(rows, colWidths=[2*cm] + [2.2*cm] * config.periods_per_day)
+        t = Table(rows, colWidths=[2*cm] + [2.5*cm] * config.periods_per_day)
         t.setStyle(_light_theme_table_style(len(rows), len(header)))
         story.append(Paragraph(f"<b>Class: {class_id}</b>", styles["Heading2"]))
         story.append(Spacer(1, 0.3*cm))
         story.append(t)
-        story.append(Spacer(1, 0.8*cm))
+        story.append(Spacer(1, 0.5*cm))
 
     doc.build(story)
     return buffer.getvalue()
@@ -112,7 +114,8 @@ def export_teacher_timetables_pdf(
     teacher_timetables: teacher_id -> (day_idx, period_idx) -> (class_id, subject)
     """
     buffer = BytesIO()
-    doc = SimpleDocTemplate(buffer, pagesize=A4, leftMargin=1.5*cm, rightMargin=1.5*cm)
+    # Use landscape A4 for better table fit
+    doc = SimpleDocTemplate(buffer, pagesize=landscape(A4), leftMargin=1*cm, rightMargin=1*cm, topMargin=1*cm, bottomMargin=1*cm)
     styles = getSampleStyleSheet()
     story = []
 
@@ -136,12 +139,12 @@ def export_teacher_timetables_pdf(
                     row.append(val)
             rows.append(row)
 
-        t = Table(rows, colWidths=[2*cm] + [2.2*cm] * config.periods_per_day)
+        t = Table(rows, colWidths=[2*cm] + [2.5*cm] * config.periods_per_day)
         t.setStyle(_light_theme_table_style(len(rows), len(header)))
         story.append(Paragraph(f"<b>Teacher: {teacher_id}</b>", styles["Heading2"]))
         story.append(Spacer(1, 0.3*cm))
         story.append(t)
-        story.append(Spacer(1, 0.8*cm))
+        story.append(Spacer(1, 0.5*cm))
 
     doc.build(story)
     return buffer.getvalue()

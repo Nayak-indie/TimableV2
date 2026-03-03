@@ -37,26 +37,31 @@ def _teacher_to_dict(t: Teacher) -> dict:
     """Convert Teacher to JSON-serializable dict."""
     return {
         "teacher_id": t.teacher_id,
+        "name": t.name,
         "subjects": t.subjects,
-        "sections": t.sections,
         "max_periods_per_day": t.max_periods_per_day,
+        "max_periods_per_week": getattr(t, 'max_periods_per_week', 30),
+        "target_free_periods_per_day": getattr(t, 'target_free_periods_per_day', 0),
     }
 
 
 def _dict_to_teacher(d):
     # We only pull out the parts the Teacher class actually knows how to handle
     return Teacher(
+        teacher_id=d.get("teacher_id", d.get("name", "Unknown")),
         name=d.get("name", "Unknown"),
         subjects=d.get("subjects", []),
-        sections=d.get("sections", []),
-        max_periods_per_day=d.get("max_periods_per_day", 6)
+        max_periods_per_day=d.get("max_periods_per_day", 6),
+        max_periods_per_week=d.get("max_periods_per_week", 30),
+        target_free_periods_per_day=d.get("target_free_periods_per_day", 0),
     )
 
 
 def _class_to_dict(c: Class) -> dict:
     """Convert Class to JSON-serializable dict."""
     return {
-        "class_id": c.class_id,
+        "id": c.id,
+        "name": c.name,
         "subjects": [
             {"subject": cs.subject, "weekly_periods": cs.weekly_periods, "teacher_id": cs.teacher_id}
             for cs in c.subjects
@@ -74,7 +79,7 @@ def _dict_to_class(d: dict) -> Class:
         )
         for s in d.get("subjects", [])
     ]
-    return Class(class_id=d["class_id"], subjects=subs)
+    return Class(id=d.get("id", d.get("class_id", "Unknown")), name=d.get("name", d.get("id", "Unknown")), subjects=subs)
 
 
 def load_teachers() -> List[Teacher]:
@@ -130,9 +135,7 @@ def load_priority_configs() -> List[ClassPriorityConfig]:
         return [
             ClassPriorityConfig(
                 class_id=d["class_id"],
-                priority_subjects=d.get("priority_subjects", []),
-                weak_subjects=d.get("weak_subjects", []),
-                heavy_subjects=d.get("heavy_subjects", []),
+                subject_priority=d.get("subject_priority", {}),
             )
             for d in data
         ]
@@ -146,9 +149,7 @@ def save_priority_configs(configs: List[ClassPriorityConfig]) -> None:
     data = [
         {
             "class_id": p.class_id,
-            "priority_subjects": p.priority_subjects,
-            "weak_subjects": p.weak_subjects,
-            "heavy_subjects": p.heavy_subjects,
+            "subject_priority": p.subject_priority,
         }
         for p in configs
     ]

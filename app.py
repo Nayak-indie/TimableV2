@@ -34,12 +34,17 @@ from storage import (
     clear_scenario_state,
     is_demo_loaded,
     load_base_timetable,
+    load_classes,
     load_config,
     load_history,
+    load_priority_configs,
     load_scenario_state,
+    load_teachers,
     save_base_timetable,
+    save_classes,
     save_config,
     save_scenario_state,
+    save_teachers,
     set_demo_loaded,
 )
 
@@ -199,9 +204,10 @@ def _init_session() -> None:
     if "initialized" in st.session_state:
         return
 
-    st.session_state.teachers: List[Teacher] = []
-    st.session_state.classes: List[Class] = []
-    st.session_state.priority_configs: List[ClassPriorityConfig] = []
+    # Load from persistent storage first
+    st.session_state.teachers: List[Teacher] = load_teachers()
+    st.session_state.classes: List[Class] = load_classes()
+    st.session_state.priority_configs: List[ClassPriorityConfig] = load_priority_configs()
     st.session_state.config: SchoolConfig = load_config()
 
     base = load_base_timetable()
@@ -384,6 +390,9 @@ def load_demo_into_session() -> None:
 
     show_toast("Demo data loaded (teachers + classes)")
     set_demo_loaded()
+    # Save demo data to persistent storage
+    save_teachers(st.session_state.teachers)
+    save_classes(st.session_state.classes)
 
 
 # ---------------------------------------------------------------------------
@@ -493,6 +502,7 @@ def tab_teachers_classes() -> None:
                 st.session_state.teachers.append(teacher)
                 show_toast(f"Teacher {t_id} added")
                 append_history("add", f"Teacher {t_id}", f"Added teacher {t_id}")
+                save_teachers(st.session_state.teachers)
 
     if st.session_state.teachers:
         for i, t in enumerate(st.session_state.teachers):
@@ -514,6 +524,7 @@ def tab_teachers_classes() -> None:
                         f"Teacher {removed.teacher_id}",
                         f"Removed teacher {removed.teacher_id}",
                     )
+                    save_teachers(st.session_state.teachers)
                     st.rerun()
     else:
         st.info("No teachers yet. Add a few above.")
@@ -549,6 +560,7 @@ def tab_teachers_classes() -> None:
                 )
                 show_toast(f"Class {cid} added")
                 append_history("add", f"Class {cid}", f"Added class {cid}")
+                save_classes(st.session_state.classes)
 
     if st.session_state.classes:
         for i, c in enumerate(st.session_state.classes):
@@ -568,6 +580,8 @@ def tab_teachers_classes() -> None:
                         f"Class {removed.id}",
                         f"Removed class {removed.id}",
                     )
+                    from storage import save_classes
+                    save_classes(st.session_state.classes)
                     st.rerun()
     else:
         st.info("No classes yet. Add a few above.")

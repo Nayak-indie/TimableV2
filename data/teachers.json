@@ -1,0 +1,122 @@
+[
+  {
+    "teacher_id": "Eric Simon",
+    "name": "Eric Simon",
+    "subjects": [
+      "Physics"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Aisha Khan",
+    "name": "Aisha Khan",
+    "subjects": [
+      "Chemistry"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Rahul Mehta",
+    "name": "Rahul Mehta",
+    "subjects": [
+      "Mathematics"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Neha Verma",
+    "name": "Neha Verma",
+    "subjects": [
+      "Biology"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Daniel Brooks",
+    "name": "Daniel Brooks",
+    "subjects": [
+      "English"
+    ],
+    "max_periods_per_day": 4,
+    "max_periods_per_week": 20,
+    "target_free_periods_per_day": 4
+  },
+  {
+    "teacher_id": "Priya Nair",
+    "name": "Priya Nair",
+    "subjects": [
+      "Economics"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Arjun Patel",
+    "name": "Arjun Patel",
+    "subjects": [
+      "Accountancy"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Kavita Rao",
+    "name": "Kavita Rao",
+    "subjects": [
+      "Business Studies"
+    ],
+    "max_periods_per_day": 4,
+    "max_periods_per_week": 24,
+    "target_free_periods_per_day": 4
+  },
+  {
+    "teacher_id": "Sofia Mendes",
+    "name": "Sofia Mendes",
+    "subjects": [
+      "History"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Aman Gupta",
+    "name": "Aman Gupta",
+    "subjects": [
+      "Political Science"
+    ],
+    "max_periods_per_day": 5,
+    "max_periods_per_week": 30,
+    "target_free_periods_per_day": 3
+  },
+  {
+    "teacher_id": "Ritu Chawla",
+    "name": "Ritu Chawla",
+    "subjects": [
+      "Geography"
+    ],
+    "max_periods_per_day": 4,
+    "max_periods_per_week": 24,
+    "target_free_periods_per_day": 4
+  },
+  {
+    "teacher_id": "Marcus Lee",
+    "name": "Marcus Lee",
+    "subjects": [
+      "Physical Education"
+    ],
+    "max_periods_per_day": 3,
+    "max_periods_per_week": 15,
+    "target_free_periods_per_day": 5
+  }
+]
